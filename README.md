@@ -1,4 +1,6 @@
-# url-shortener-web
+# URL-Shortener Frontend
+
+Vue.js Frontend for a [Restful URL-Shortener API](https://github.com/Buffalom/url-shortener-api).
 
 ## Project setup
 ```
