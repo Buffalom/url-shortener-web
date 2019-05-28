@@ -1,5 +1,6 @@
 <template>
   <div :class="{ 'input-field': true, 'active': localValue }">
+    <fa-icon v-if="icon" class="icon" :icon="icon" fixed-width></fa-icon>
     <label :for="name">{{ label }}</label>
     <input v-model="localValue" :type="type" :name="name" :placeholder="label" />
   </div>
@@ -7,12 +8,13 @@
 
 <script>
 export default {
-  name: 'input',
+  name: 'u-input',
   props: {
     name: { type: String, default: 'input' },
     type: { type: String, default: 'text' },
     label: { type: String, default: 'Label' },
-    value: { type: String }
+    value: { type: String },
+    icon: { type: undefined }
   },
   data () {
     return {
@@ -32,7 +34,7 @@ export default {
   position: relative;
 
   input {
-    padding: 4px 12px;
+    padding: 4px 12px 4px 35px;
     margin-top: 4px;
     margin-bottom: 4px;
 
@@ -57,12 +59,15 @@ export default {
     }
   }
 
-  label {
+  .icon, label {
     position: absolute;
-    z-index: -1;
-    top: 50%;
     left: 10px;
+    top: 50%;
     transform: translate(0, -50%);
+  }
+
+  label {
+    z-index: -1;
     transition: transform .1s ease-in-out, left .1s ease-in-out;
   }
 
