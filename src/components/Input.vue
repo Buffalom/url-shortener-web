@@ -2,7 +2,7 @@
   <div :class="{ 'input-field': true, 'active': localValue }">
     <fa-icon v-if="icon" class="icon" :icon="icon" fixed-width></fa-icon>
     <label :for="name">{{ label }}</label>
-    <input v-model="localValue" :type="type" :name="name" :placeholder="label" />
+    <input v-model="localValue" :type="type" :name="name" :placeholder="label"></input>
   </div>
 </template>
 
@@ -34,6 +34,8 @@ export default {
   position: relative;
 
   input {
+    transition: margin-top .1s ease-in-out;
+
     padding: 4px 12px 4px 35px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -64,17 +66,32 @@ export default {
     left: 10px;
     top: 50%;
     transform: translate(0, -50%);
+    transition: transform .1s ease-in-out, left .1s ease-in-out;
   }
 
   label {
     z-index: -1;
-    transition: transform .1s ease-in-out, left .1s ease-in-out;
   }
 
   &.active {
     label {
       left: 0px;
       transform: translate(calc(-100% - 10px), -50%);
+    }
+
+    @media screen and (max-width: 600px) {
+      input {
+        margin-top: 28px;
+      }
+
+      .icon {
+        transform: translate(0, calc(-50% + 12px));
+      }
+
+      label {
+        left: 10px;
+        transform: translate(0, -140%);
+      }
     }
   }
 }
