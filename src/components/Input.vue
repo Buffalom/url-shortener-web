@@ -37,7 +37,7 @@ export default {
     margin-bottom: 4px;
 
     outline: none;
-    border: 2px solid #eee;
+    border: 3px solid #eee;
     border-radius: 24px;
     background-color: #eee;
 
@@ -45,9 +45,15 @@ export default {
     font-size: inherit;
     color: black;
 
+    &:hover {
+      border-color: #f6f6f6;
+      background-color: #f6f6f6;
+    }
+
     &:active, &:focus {
       outline: none;
-      background-color: white;
+      border-color: #eee;
+      background-color: #fff;
     }
   }
 
