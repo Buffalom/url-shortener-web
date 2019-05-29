@@ -8,6 +8,17 @@
       <div class="flex">
         <u-input v-model="password" name="password" type="password" label="Password" :icon="['far', 'lock']"></u-input>
       </div>
+      <div class="flex">
+        <div class="layout">
+          <div class="flex">
+            <p>
+              <router-link :to="{ name: 'register' }">New here?</router-link>
+            </p>
+          </div>
+          <div class="flex">
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>

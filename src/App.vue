@@ -26,12 +26,52 @@ body, #app {
   align-items: center;
 
   & > div {
-    max-width: 100%;
+    max-width: 95%;
+    width: 500px;
+  }
+
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  a {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      height: 2px;
+      width: 100%;
+
+      background-color: #eee;
+    }
+
+    &::before {
+      width: 0;
+      left: 50%;
+      transition: width .1s ease-in-out, left .1s ease-in-out;
+
+      z-index: 1;
+      margin: 0 auto;
+
+      background-color: #ccc;
+    }
+
+    &:hover::before {
+      width: 100%;
+      left: 0;
+    }
   }
 }
 
 .scale-fade-enter-active, .scale-fade-leave-active {
-  transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+  transition: transform .3s ease-in-out, opacity .3s ease-in-out;
 }
 .scale-fade-enter, .scale-fade-leave-to {
   opacity: 0;

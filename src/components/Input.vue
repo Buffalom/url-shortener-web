@@ -32,10 +32,12 @@ export default {
 <style lang="scss" scoped>
 .input-field {
   position: relative;
+  width: 100%;
 
   input {
     transition: margin-top .1s ease-in-out;
 
+    width: calc(100% - 47px - 6px);
     padding: 4px 12px 4px 35px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -79,7 +81,7 @@ export default {
       transform: translate(calc(-100% - 10px), -50%);
     }
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 900px) {
       input {
         margin-top: 28px;
       }
