@@ -24,6 +24,10 @@ body, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & > div {
+    max-width: 100%;
+  }
 }
 
 .scale-fade-enter-active, .scale-fade-leave-active {
