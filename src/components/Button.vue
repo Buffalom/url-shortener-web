@@ -1,6 +1,6 @@
 <template>
   <button @click="$emit('click')" :class="color ? 'button-' + color : ''">
-    <fa-icon v-if="icon" class="icon" :icon="icon" fixed-width></fa-icon>
+    <fa-icon v-if="icon" class="icon" :icon="icon"></fa-icon>
     <slot></slot>
   </button>
 </template>
@@ -38,6 +38,10 @@ button {
 
   font-family: inherit;
   font-size: inherit;
+
+  .icon {
+    margin-right: 10px;
+  }
 
   @include button-color(#eee);
 
