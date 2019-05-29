@@ -19,6 +19,9 @@
             </p>
           </div>
           <div class="flex">
+            <p>
+              <u-button color="blue">Register</u-button>
+            </p>
           </div>
         </div>
       </div>

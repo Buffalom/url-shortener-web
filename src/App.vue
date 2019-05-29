@@ -33,6 +33,7 @@ body, #app {
   .layout {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   a {
@@ -63,9 +64,13 @@ body, #app {
       background-color: #ccc;
     }
 
-    &:hover::before {
+    &:hover::before, &:focus::before {
       width: 100%;
       left: 0;
+    }
+
+    &:active, &:focus {
+      outline: none;
     }
   }
 }

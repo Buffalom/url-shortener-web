@@ -16,6 +16,9 @@
             </p>
           </div>
           <div class="flex">
+            <p>
+              <u-button color="blue">Login</u-button>
+            </p>
           </div>
         </div>
       </div>
