@@ -2,7 +2,7 @@
   <div :class="{ 'input-field': true, 'active': localValue }">
     <fa-icon v-if="icon" class="icon" :icon="icon" fixed-width></fa-icon>
     <label :for="name">{{ label }}</label>
-    <input v-model="localValue" :type="type" :name="name" :placeholder="label"></input>
+    <input v-model="localValue" :type="type" :name="name" :placeholder="label" />
   </div>
 </template>
 
