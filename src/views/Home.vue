@@ -5,7 +5,12 @@
 </template>
 
 <script>
+import globalErrorHandler from '../utils/globalErrorHandler'
+
 export default {
-  name: 'home'
+  name: 'home',
+  mounted () {
+    this.axios.get('/shorts').catch(globalErrorHandler(this))
+  }
 }
 </script>
