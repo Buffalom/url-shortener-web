@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
       return [200, []]
     } else {
       return [403, {
-        message: "Unauthorized"
+        message: 'Unauthorized'
       }]
     }
   })
