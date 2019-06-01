@@ -29,7 +29,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('jwt') == null) {
       next({
         name: 'login',
@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    next() 
+    next()
   }
 })
 
