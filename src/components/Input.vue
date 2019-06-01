@@ -76,6 +76,8 @@ export default {
   }
 
   &.active {
+    box-shadow: none;
+
     label {
       left: 0px;
       transform: translate(calc(-100% - 10px), -50%);
