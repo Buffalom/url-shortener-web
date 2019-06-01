@@ -1,8 +1,12 @@
 <template>
-  <button @click="$emit('click')" :class="color ? 'button-' + color : ''">
-    <fa-icon v-if="icon" class="icon" :icon="icon"></fa-icon>
-    <slot></slot>
-  </button>
+  <div class="wrapper">
+    <button @click="$emit('click')" :class="classes">
+      <fa-icon v-if="icon" class="icon" :icon="icon"></fa-icon>
+      <slot></slot>
+    </button>
+    <div class="button-loading-circle"></div>
+    <div class="button-loading-dot"></div>
+  </div>
 </template>
 
 <script>
@@ -10,12 +14,26 @@ export default {
   name: 'u-button',
   props: {
     color: { type: String },
-    icon: { type: undefined }
+    icon: { type: undefined },
+    loading: { type: Boolean }
+  },
+  computed: {
+    classes () {
+      return [
+        this.color ? 'button-' + this.color : '',
+        this.loading ? ' button-loading' : ''
+      ].filter(c => c).join(' ')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$color-default: #eee;
+$color-blue: #1455FF;
+
+$button-loading-circle-width: 30px;
+
 @mixin button-color($base, $text: inherit) {
   background-color: $base;
   color: $text;
@@ -23,39 +41,123 @@ export default {
   &:hover, &:focus {
     background-color: lighten($base, 5%);
   }
+
+  & ~ .button-loading-circle {
+    background-color: #fff;
+    border-color: $base;
+  }
+  & ~ .button-loading-dot {
+    background-color: $base;
+  }
 }
 
-button {
-  cursor: pointer;
+@keyframes button-loading-circle {
+  0% {
+    width: 0;
+    height: 0;
+    border-width: $button-loading-circle-width / 2;
+  }
+  50% {
+    width: $button-loading-circle-width - ($button-loading-circle-width / 10);
+    height: $button-loading-circle-width - ($button-loading-circle-width / 10);
+    border-width: $button-loading-circle-width / 10;
+  }
+  100% {
+    width: $button-loading-circle-width - ($button-loading-circle-width / 10);
+    height: $button-loading-circle-width - ($button-loading-circle-width / 10);
+    border-width: $button-loading-circle-width / 10;
+  }
+}
+@keyframes button-loading-dot {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: $button-loading-circle-width;
+    height: $button-loading-circle-width;
+  }
+}
 
-  min-width: 100px;
-  padding: 4px 12px;
+div.wrapper {
+  position: relative;
   margin-top: -4px;
-  margin-bottom: 4px;
 
-  border: none;
-  border-radius: 6px;
+  button {
+    cursor: pointer;
 
-  font-family: inherit;
-  font-size: inherit;
+    min-width: 100px;
+    padding: 4px 12px;
 
-  .icon {
-    margin-right: 10px;
+    border: none;
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: inherit;
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    @include button-color($color-default);
+
+    &:hover, &:focus {
+      outline: none;
+    }
+
+    &:active {
+      outline: none;
+      transform: scale(0.95);
+    }
+
+    transition: transform .2s cubic-bezier(.3,.8,.8,.85);
+    &.button-loading {
+      transform: scale(0);
+
+      & ~ .button-loading-circle, & ~ .button-loading-dot {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      & ~ .button-loading-circle {
+        animation: button-loading-circle 2s .2s infinite;
+      }
+      & ~ .button-loading-dot {
+        animation: button-loading-dot 2s .2s infinite;
+      }
+    }
+
+    &.button-blue {
+      @include button-color($color-blue, #fff);
+    }
   }
 
-  @include button-color(#eee);
+  .button-loading-circle, .button-loading-dot {
+    transition: transform .2s cubic-bezier(.3, .8, .8, .85);
 
-  &:hover, &:focus {
-    outline: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
+
+    border-radius: 50%;
+
+    width: 0;
+    height: 0;
   }
-
-  &:active {
-    outline: none;
-    transform: scale(0.95);
+  .button-loading-dot {
+    z-index: -1;
   }
+  .button-loading-circle {
+    z-index: -2;
+    border-style: solid;
 
-  &.button-blue {
-    @include button-color(#1455FF, #fff);
+    width: 0;
+    height: 0;
+    border-width: $button-loading-circle-width / 2;
   }
 }
 </style>
