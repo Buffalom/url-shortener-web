@@ -12,7 +12,7 @@
         <div class="layout">
           <div class="flex">
             <p>
-              <router-link :to="{ name: 'register' }">New here?</router-link>
+              <router-link :to="{ name: 'register', query: { ...this.$route.query } }">New here?</router-link>
             </p>
           </div>
           <div class="flex">

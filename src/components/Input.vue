@@ -2,7 +2,7 @@
   <div :class="{ 'input-field': true, 'active': localValue }">
     <fa-icon v-if="icon" class="icon" :icon="icon" fixed-width></fa-icon>
     <label :for="name">{{ label }}</label>
-    <input v-model="localValue" :type="type" :name="name" :placeholder="label" />
+    <input v-model="localValue" v-validate="rules" :type="type" :name="name" :ref="name" :placeholder="label" />
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
     type: { type: String, default: 'text' },
     label: { type: String, default: 'Label' },
     value: { type: String },
-    icon: { type: undefined }
+    icon: { type: undefined },
+    rules: { type: String }
   },
   data () {
     return {
@@ -51,15 +52,27 @@ export default {
     font-size: inherit;
     color: black;
 
+    &.invalid {
+      border-color: lighten($color: #ff0000, $amount: 30);
+    }
+
     &:hover {
       border-color: #f6f6f6;
       background-color: #f6f6f6;
+
+      &.invalid {
+        border-color: lighten($color: #ff0000, $amount: 35);
+      }
     }
 
     &:active, &:focus {
       outline: none;
       border-color: #eee;
       background-color: #fff;
+
+      &.invalid {
+        border-color: lighten($color: #ff0000, $amount: 30);
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <button @click="$emit('click')" :class="classes">
+    <button @click="$emit('click')" :disabled="disabled" :class="classes">
       <fa-icon v-if="icon" class="icon" :icon="icon"></fa-icon>
       <slot></slot>
     </button>
@@ -15,13 +15,14 @@ export default {
   props: {
     color: { type: String },
     icon: { type: undefined },
-    loading: { type: Boolean }
+    loading: { type: Boolean },
+    disabled: { type: Boolean }
   },
   computed: {
     classes () {
       return [
         this.color ? 'button-' + this.color : '',
-        this.loading ? ' button-loading' : ''
+        this.loading ? 'button-loading' : ''
       ].filter(c => c).join(' ')
     }
   }
@@ -40,6 +41,15 @@ $button-loading-circle-width: 30px;
 
   &:hover, &:focus {
     background-color: lighten($base, 5%);
+  }
+
+  &:disabled {
+    background-color: lighten($base, 30%);
+    color: $text;
+
+    &:hover, &:focus {
+      background-color: lighten($base, 30%);
+    }
   }
 
   & ~ .button-loading-circle {

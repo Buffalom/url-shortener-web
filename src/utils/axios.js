@@ -2,7 +2,7 @@ import axios from 'axios'
 
 if (process.env.NODE_ENV === 'development') {
   const MockAdapter = require('axios-mock-adapter')
-  var mock = new MockAdapter(axios, { delayResponse: 1000 })
+  var mock = new MockAdapter(axios, { delayResponse: 2000 })
 
   let mockedAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUB0b21kZ20uY2giLCJleHAiOjE1NjAwMzIwNzk1NDYsImlhdCI6MTU1OTQyNzI3OX0.EoJZUt6TyQl6fQBbV0LAXQsCWSgwpJmZczC_y1hh2vQ'
 
