@@ -27,6 +27,16 @@ if (process.env.NODE_ENV === 'development') {
       }]
     }
   })
+
+  mock.onPost('/shorts').reply(config => {
+    if (sessionStorage.getItem('AccessToken')) {
+      return [200, 'As5dpF']
+    } else {
+      return [403, {
+        message: 'Unauthorized'
+      }]
+    }
+  })
 }
 
 export default axios
