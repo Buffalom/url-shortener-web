@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import globalErrorHandler from '../utils/globalErrorHandler'
 
 export default {
-  name: 'home',
+  name: 'urls',
   mounted () {
-    this.axios.get('/shorts').catch(globalErrorHandler(this))
+    this.$store.dispatch('fetchShorts').catch(globalErrorHandler(this))
+  },
+  computed: {
+    ...mapState(['shorts'])
   }
 }
 </script>
