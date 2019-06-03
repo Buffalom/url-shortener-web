@@ -10,11 +10,11 @@ if (process.env.NODE_ENV === 'development') {
     message: 'Signup successful'
   })
 
-  mock.onPost('/login').reply(config => {
+  mock.onPost('/signin').reply(config => {
     sessionStorage.setItem('AccessToken', mockedAccessToken)
 
     return [200, {
-      message: 'Login successful'
+      message: 'Signin successful'
     }]
   })
 

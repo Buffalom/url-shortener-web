@@ -47,8 +47,8 @@ export default {
   },
   methods: {
     register () {
-      this.loading = true
       if (this.valid) {
+        this.loading = true
         this.axios.post('/signup', {
           email: this.email,
           password: this.password,

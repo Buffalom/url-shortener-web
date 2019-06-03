@@ -3,10 +3,10 @@
     <h1>Login</h1>
     <form onSubmit="return false">
       <div class="flex">
-        <u-input v-model="email" name="email" label="Email" :icon="['far', 'envelope']"></u-input>
+        <u-input v-model="email" rules="required|email" name="email" label="Email" :icon="['far', 'envelope']"></u-input>
       </div>
       <div class="flex">
-        <u-input v-model="password" name="password" type="password" label="Password" :icon="['far', 'lock']"></u-input>
+        <u-input v-model="password" rules="required" name="password" type="password" label="Password" :icon="['far', 'lock']"></u-input>
       </div>
       <div class="flex">
         <div class="layout">
@@ -17,7 +17,7 @@
           </div>
           <div class="flex">
             <p>
-              <u-button color="blue">Login</u-button>
+              <u-button @click="login" :disabled="!valid" :loading="loading" color="blue">Login</u-button>
             </p>
           </div>
         </div>
@@ -32,7 +32,28 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      loading: false
+    }
+  },
+  computed: {
+    valid () {
+      return !!this.email && !!this.password && this.errors.items.length <= 0
+    }
+  },
+  methods: {
+    login () {
+      if (this.valid) {
+        this.loading = true
+        this.axios.post('/signin', {
+          email: this.email,
+          password: this.password
+        }).then(result => {
+          this.$router.push(this.$route.query.nextUrl)
+        }).finally(() => {
+          this.loading = false
+        })
+      }
     }
   }
 }

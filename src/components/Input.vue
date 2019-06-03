@@ -52,7 +52,7 @@ export default {
     font-size: inherit;
     color: black;
 
-    &.invalid {
+    &.touched.invalid {
       border-color: lighten($color: #ff0000, $amount: 30);
     }
 
@@ -60,7 +60,7 @@ export default {
       border-color: #f6f6f6;
       background-color: #f6f6f6;
 
-      &.invalid {
+      &.touched.invalid {
         border-color: lighten($color: #ff0000, $amount: 35);
       }
     }
@@ -70,7 +70,7 @@ export default {
       border-color: #eee;
       background-color: #fff;
 
-      &.invalid {
+      &.touched.invalid {
         border-color: lighten($color: #ff0000, $amount: 30);
       }
     }
