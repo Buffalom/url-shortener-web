@@ -1,10 +1,34 @@
 <template>
   <div id="app">
+    <transition-group name="notifications" tag="div" class="notifications">
+      <u-notification
+        v-for="notification in notifications"
+        :key="notification.id"
+        :type="notification.type"
+        :text="notification.text"
+      ></u-notification>
+    </transition-group>
     <transition name="scale-fade" mode="out-in" appear>
       <router-view/>
     </transition>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+import NotificationVue from './components/Notification.vue'
+
+export default {
+  name: 'App',
+  components: {
+    'u-notification': NotificationVue
+  },
+  computed: {
+    ...mapState(['notifications'])
+  }
+}
+</script>
+
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
@@ -24,6 +48,21 @@ body, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .notifications {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .notifications-enter-active, .notifications-leave-active {
+      transition: all .5s;
+    }
+
+    .notifications-enter, .notifications-leave-to {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+  }
 
   & > div {
     max-width: 95%;

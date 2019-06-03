@@ -49,7 +49,19 @@ export default {
           email: this.email,
           password: this.password
         }).then(result => {
-          this.$router.push(this.$route.query.nextUrl)
+          this.$store.dispatch('notify', {
+            type: 'success',
+            text: 'Successfully logged in',
+            time: 10000
+          })
+          // this.$router.push(this.$route.query.nextUrl || '/')
+        }).catch(err => {
+          if (err) {
+            this.$store.dispatch('notify', {
+              type: 'error',
+              text: 'An error occured'
+            })
+          }
         }).finally(() => {
           this.loading = false
         })
