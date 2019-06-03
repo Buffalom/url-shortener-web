@@ -16,7 +16,8 @@ export default new Vuex.Store({
         id: config.id,
         timestamp: +new Date(),
         type: config.type || 'success',
-        text: config.text || 'Some Notification Text!'
+        title: config.title || 'Hi!',
+        text: config.text || 'This is a Notification'
       })
     },
     removeNotification (state, id) {

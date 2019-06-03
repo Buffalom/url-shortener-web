@@ -5,6 +5,7 @@
         v-for="notification in notifications"
         :key="notification.id"
         :type="notification.type"
+        :title="notification.title"
         :text="notification.text"
       ></u-notification>
     </transition-group>
@@ -31,7 +32,7 @@ export default {
 
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
 body, #app {
   padding: 0;
@@ -53,6 +54,10 @@ body, #app {
     position: absolute;
     top: 0;
     right: 0;
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
 
     .notifications-enter-active, .notifications-leave-active {
       transition: all .5s;

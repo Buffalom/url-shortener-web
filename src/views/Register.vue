@@ -54,7 +54,22 @@ export default {
           password: this.password,
           passwordConfirm: this.passwordConfirm
         }).then(result => {
+          this.$store.dispatch('notify', {
+            type: 'success',
+            title: 'Thanks!',
+            text: 'Thanks for registering. You can now sign in.',
+            time: 2000
+          })
           this.$router.push({ name: 'login', query: { ...this.$route.query } })
+        }).catch(err => {
+          if (err) {
+            this.$store.dispatch('notify', {
+              type: 'error',
+              title: 'Oh no!',
+              text: 'An error occured. Please try again.',
+              time: 5000
+            })
+          }
         }).finally(() => {
           this.loading = false
         })

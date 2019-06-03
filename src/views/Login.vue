@@ -49,17 +49,14 @@ export default {
           email: this.email,
           password: this.password
         }).then(result => {
-          this.$store.dispatch('notify', {
-            type: 'success',
-            text: 'Successfully logged in',
-            time: 10000
-          })
-          // this.$router.push(this.$route.query.nextUrl || '/')
+          this.$router.push(this.$route.query.nextUrl || '/')
         }).catch(err => {
           if (err) {
             this.$store.dispatch('notify', {
               type: 'error',
-              text: 'An error occured'
+              title: 'Oh no!',
+              text: 'An error occured. Please try again.',
+              time: 5000
             })
           }
         }).finally(() => {
