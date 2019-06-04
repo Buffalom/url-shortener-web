@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Shorts</h1>
-    <table class="shorts">
+    <table class="shorts" cellspacing="0">
       <thead>
         <tr>
           <th>Short</th>
@@ -12,8 +12,8 @@
       </thead>
       <tbody>
         <tr v-for="short of shortsInOrder" :key="short._id">
-          <td>{{ short.hash }}</td>
-          <td>{{ short.url }}</td>
+          <td><a :href="getShortUrl(short)" target="_blank">{{ short.hash }}</a></td>
+          <td><a :href="short.url" target="_blank">{{ short.url }}</a></td>
           <td>{{ dateFormatted(short.createdAt) }}</td>
           <td>{{ totalCalls(short) }}</td>
         </tr>
@@ -61,7 +61,65 @@ export default {
       let callsOs = short.stats.os.reduce((prev, curr) => prev + curr.calls, 0)
       let callsDevices = short.stats.devices.reduce((prev, curr) => prev + curr.calls, 0)
       return callsBrowser + callsOs + callsDevices
+    },
+    getShortUrl (short) {
+      return `${window.location.origin}/${short.hash}`
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@mixin cell-color ($color: #eee) {
+  background-color: $color;
+
+  &:hover {
+    background-color: lighten($color, 5%);
+  }
+}
+
+table.shorts {
+  tr {
+    th, td {
+      text-align: left;
+      padding: 4px 12px;
+
+      border: solid 3px #eee;
+
+      &:not(:last-child) {
+        border-right: none;
+      }
+    }
+  }
+
+  thead tr, tbody tr:not(:last-child) {
+    th, td {
+      border-bottom: none;
+    }
+  }
+
+  thead tr:first-child {
+    th:first-child {
+      border-top-left-radius: 24px;
+    }
+    th:last-child {
+      border-top-right-radius: 24px;
+    }
+  }
+  tbody tr:last-child {
+    td:first-child {
+      border-bottom-left-radius: 24px;
+    }
+    td:last-child {
+      border-bottom-right-radius: 24px;
+    }
+  }
+
+  thead tr, tbody tr:nth-child(even) {
+    @include cell-color(#eee);
+  }
+  tbody tr:nth-child(odd) {
+    @include cell-color(#f6f6f6);
+  }
+}
+</style>
