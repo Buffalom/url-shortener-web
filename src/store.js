@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     notifications: [],
-    shorts: {}
+    shorts: []
   },
   mutations: {
     addNotification (state, config) {
@@ -24,7 +24,12 @@ export default new Vuex.Store({
       state.notifications.splice(state.notifications.findIndex(val => val.id === id), 1)
     },
     addShort (state, short) {
-      state.shorts[short.hash] = short
+      let i = state.shorts.findIndex(val => val.hash === short.hash)
+      if (i >= 0) {
+        state.shorts[i] = short
+      } else {
+        state.shorts.push(short)
+      }
     }
   },
   actions: {
@@ -42,5 +47,8 @@ export default new Vuex.Store({
         }
       })
     }
+  },
+  getters: {
+    shortsInOrder: state => state.shorts.sort((a, b) => +new Date(a.createdAt) < +new Date(b.createdAt))
   }
 })

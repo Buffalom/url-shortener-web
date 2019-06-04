@@ -70,7 +70,7 @@ body, #app {
 
   & > div {
     max-width: 95%;
-    width: 500px;
+    min-width: 500px;
   }
 
   .layout {

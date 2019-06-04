@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'development') {
         {
           stats: {
             _id: '5ce91628b55dbca016459a02',
-            browse: [{
+            browser: [{
               _id: '5ce931f537b6c0ccdf160f9f',
               family: 'Other',
               major: '0',
