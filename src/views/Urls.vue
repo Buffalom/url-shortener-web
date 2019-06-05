@@ -35,10 +35,6 @@ export default {
   name: 'urls',
   mounted () {
     this.$store.dispatch('fetchShorts').catch(globalErrorHandler(this))
-
-    console.log(this.dateFormatted('2019-06-03T12:10:00.000Z'))
-    console.log(this.dateFormatted('2019-06-04T12:10:00.000Z'))
-    console.log(this.dateFormatted('2019-06-04T13:10:00.000Z'))
   },
   computed: {
     ...mapGetters(['shortsInOrder'])
