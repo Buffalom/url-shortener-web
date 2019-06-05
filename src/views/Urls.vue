@@ -12,8 +12,13 @@
       </thead>
       <tbody>
         <tr v-for="short of shortsInOrder" :key="short._id">
-          <td><a :href="getShortUrl(short)" target="_blank">{{ short.hash }}</a></td>
-          <td><a :href="short.url" target="_blank">{{ short.url }}</a></td>
+          <td class="icon-cell">
+            <a :href="getShortUrl(short)" target="_blank">{{ short.hash }}</a>
+            <fa-icon v-clipboard="short.hash" class="icon-cell-icon" :icon="['far', 'copy']" fixed-width></fa-icon>
+          </td>
+          <td>
+            <a :href="short.url" target="_blank">{{ short.url }}</a>
+          </td>
           <td>{{ dateFormatted(short.createdAt) }}</td>
           <td>{{ totalCalls(short) }}</td>
         </tr>
@@ -43,9 +48,9 @@ export default {
       let date = new Date(utcTimestamp)
       let now = new Date()
       if (
-        date.getFullYear() === now.getFullYear()
-        && date.getMonth() === now.getMonth()
-        && date.getDate() === now.getDate()
+        date.getFullYear() === now.getFullYear() &&
+        date.getMonth() === now.getMonth() &&
+        date.getDate() === now.getDate()
       ) {
         if (date.getHours() === now.getHours()) {
           let diff = now - date
@@ -83,6 +88,30 @@ table.shorts {
     th, td {
       text-align: left;
       padding: 4px 12px;
+
+      &.icon-cell {
+        position: relative;
+        padding-right: calc(12px + 22.5px + 12px);
+
+        .icon-cell-icon {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+
+          border-radius: 50%;
+          padding: 5px;
+
+          cursor: pointer;
+
+          background-color: none;
+          transition: background-color .1s ease-in-out;
+
+          &:hover, &:focus {
+            background-color: #eee;
+          }
+        }
+      }
 
       border: solid 3px #eee;
 

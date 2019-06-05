@@ -6,8 +6,9 @@ import axios from './utils/axios'
 import VueAxios from 'vue-axios'
 import VeeValidate from 'vee-validate'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEnvelope, faLock } from '@fortawesome/pro-regular-svg-icons'
+import { faEnvelope, faLock, faCopy } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Clipboard from 'v-clipboard'
 
 import InputVue from './components/Input.vue'
 import ButtonVue from './components/Button.vue'
@@ -16,8 +17,9 @@ Vue.use(VueAxios, axios)
 Vue.use(VeeValidate, {
   classes: true
 })
+Vue.use(Clipboard)
 
-library.add(faEnvelope, faLock)
+library.add(faEnvelope, faLock, faCopy)
 Vue.component('fa-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

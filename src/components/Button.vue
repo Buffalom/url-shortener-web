@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div :class="'wrapper' + (inline ? ' inline' : '')">
     <button @click="$emit('click')" :disabled="disabled" :class="classes">
       <fa-icon v-if="icon" class="icon" :icon="icon"></fa-icon>
       <slot></slot>
@@ -15,6 +15,8 @@ export default {
   props: {
     color: { type: String },
     icon: { type: undefined },
+    iconOnly: { type: Boolean },
+    inline: { type: Boolean },
     loading: { type: Boolean },
     disabled: { type: Boolean }
   },
@@ -22,7 +24,8 @@ export default {
     classes () {
       return [
         this.color ? 'button-' + this.color : '',
-        this.loading ? 'button-loading' : ''
+        this.loading ? 'button-loading' : '',
+        this.iconOnly ? 'button-icon-only' : ''
       ].filter(c => c).join(' ')
     }
   }
@@ -97,6 +100,12 @@ div.wrapper {
   position: relative;
   margin-top: -4px;
 
+  &.inline {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+  }
+
   button {
     cursor: pointer;
 
@@ -111,6 +120,15 @@ div.wrapper {
 
     .icon {
       margin-right: 10px;
+    }
+
+    &.button-icon-only {
+      min-width: auto;
+      border-radius: 24px;
+
+      .icon {
+        margin: 0;
+      }
     }
 
     @include button-color($color-default);
