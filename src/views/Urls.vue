@@ -14,7 +14,7 @@
         <tr v-for="short of shortsInOrder" :key="short._id">
           <td class="icon-cell">
             <a :href="getShortUrl(short)" target="_blank">{{ short.hash }}</a>
-            <fa-icon v-clipboard="short.hash" class="icon-cell-icon" :icon="['far', 'copy']" fixed-width></fa-icon>
+            <fa-icon v-clipboard="getShortUrl(short)" class="icon-cell-icon" :icon="['far', 'copy']" fixed-width></fa-icon>
           </td>
           <td>
             <a :href="short.url" target="_blank">{{ short.url }}</a>
