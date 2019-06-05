@@ -29,6 +29,9 @@
 <script>
 export default {
   name: 'login',
+  mounted () {
+    this.$store.commit('isLoading', false)
+  },
   data () {
     return {
       email: '',

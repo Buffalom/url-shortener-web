@@ -34,7 +34,10 @@ import globalErrorHandler from '../utils/globalErrorHandler'
 export default {
   name: 'urls',
   mounted () {
-    this.$store.dispatch('fetchShorts').catch(globalErrorHandler(this))
+    this.$store.commit('isLoading', true)
+    this.$store.dispatch('fetchShorts').catch(globalErrorHandler(this)).finally(() => {
+      this.$store.commit('isLoading', false)
+    })
   },
   computed: {
     ...mapGetters(['shortsInOrder'])

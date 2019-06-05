@@ -32,6 +32,9 @@
 <script>
 export default {
   name: 'register',
+  mounted () {
+    this.$store.commit('isLoading', false)
+  },
   data () {
     return {
       email: '',

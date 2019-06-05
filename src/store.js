@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     notifications: [],
-    shorts: []
+    shorts: [],
+    loading: true
   },
   mutations: {
     addNotification (state, config) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
       } else {
         state.shorts.push(short)
       }
+    },
+    isLoading (state, val) {
+      state.loading = val
     }
   },
   actions: {

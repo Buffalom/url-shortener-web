@@ -9,9 +9,15 @@
         :text="notification.text"
       ></u-notification>
     </transition-group>
-    <transition name="scale-fade" mode="out-in" appear>
-      <router-view/>
-    </transition>
+
+    <div v-if="loading" class="loading-wrapper">
+      <fa-icon :icon="['far', 'spinner-third']" size="3x" spin></fa-icon>
+    </div>
+    <div v-show="!loading">
+      <transition name="scale-fade" mode="out-in" appear>
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -25,7 +31,7 @@ export default {
     'u-notification': NotificationVue
   },
   computed: {
-    ...mapState(['notifications'])
+    ...mapState(['notifications', 'loading'])
   }
 }
 </script>
@@ -48,6 +54,14 @@ body, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .loading-wrapper {
+    min-width: auto;
+
+    .fa-spin {
+      animation: fa-spin 1s infinite linear;
+    }
+  }
 
   .notifications {
     position: absolute;
