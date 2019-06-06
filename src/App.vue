@@ -39,12 +39,21 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 
+body {
+  background: #4f0f40;
+  background: -moz-linear-gradient(top,  #4f0f40 0%, #310c3f 100%);
+  background: -webkit-linear-gradient(top,  #4f0f40 0%,#310c3f 100%);
+  background: linear-gradient(to bottom,  #4f0f40 0%,#310c3f 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f0f40', endColorstr='#310c3f',GradientType=0 );
+}
+
 body, #app {
   padding: 0;
   margin: 0;
 
   font-family: 'Nunito', 'Trebuchet MS', 'Arial', sans-serif;
   font-size: 18px;
+  color: white;
 }
 
 #app {

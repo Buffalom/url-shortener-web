@@ -76,6 +76,10 @@ export default {
     }
   }
 
+  .icon {
+    color: black;
+  }
+
   .icon, label {
     position: absolute;
     left: 10px;

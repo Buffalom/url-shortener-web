@@ -83,6 +83,8 @@ export default {
 }
 
 table.shorts {
+  color: black;
+
   tr {
     th, td {
       text-align: left;
